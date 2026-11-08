@@ -1,3 +1,14 @@
+# Reflection
+
+# 1. In real work, I would use .get() when a key might be missing so the program
+# doesn't crash. I would use bracket notation when I know the key exists and 
+# needs its value. My rule of thumb is to use .get() for optional information 
+# and brackets for required information.
+
+# 2. This pattern reminds me of using SUMIF in Excel because it adds values 
+# based on a specific category. Python can be more useful for large datasets 
+# because it can process many records automatically without having to manually
+# organize or calculate everything.
 
 # Exercise 1
 
@@ -103,3 +114,43 @@ for customer_info in customers:
     discount_amount = 300 * discount_rate
 
     print(f"{customer_info['name']} - {tier} - Discount: ${discount_amount:.2f}")
+
+
+
+# Exercise 7
+
+# Create a nested product catalog
+catalog = {
+    "Widget A": {"price": 9.99, "stock": 150},
+    "Gadget C": {"price": 49.99, "stock": 8}
+}
+
+# Loop through the catalog
+for product, details in catalog.items():
+    if details["stock"] < 20:
+        print(f"LOW STOCK: {product} - Stock: {details['stock']}")
+
+
+
+# Exercise 8
+
+# Create a list of transactions
+transactions = [
+    {"region": "South", "amount": 300},
+    {"region": "North", "amount": 150},
+    {"region": "South", "amount": 200}
+]
+
+# Create an empty summary dictionary
+sales_summary = {}
+
+# Loop through each transaction
+for transaction in transactions:
+    region = transaction["region"]
+    amount = transaction["amount"]
+
+    sales_summary[region] = sales_summary.get(region, 0) + amount
+
+# Print the summary sorted by region
+for region in sorted(sales_summary):
+    print(f"{region}: {sales_summary[region]}")
